@@ -1,0 +1,21 @@
+---
+
+- name: validate configuration
+  command: |
+    dnsmasq --test
+
+- name: restart service
+  service:
+    name: dnsmasq
+    state: restarted
+  listen: restart dnsmasq
+  when: service_default_state | default('started') == 'started'
+
+- name: reload service
+  service:
+    name: dnsmasq
+    state: reloaded
+  listen: reload dnsmasq
+  when: service_default_state | default('started') == 'started'
+
+...

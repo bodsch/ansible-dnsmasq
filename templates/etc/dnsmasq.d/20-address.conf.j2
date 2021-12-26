@@ -1,0 +1,6 @@
+
+{% if dnsmasq_static_addresses is defined and dnsmasq_static_addresses != [] %}
+{%   for item in dnsmasq_static_addresses %}
+address=/{{ item.get('name') }}/{{ item.get('address') }}
+{%   endfor %}
+{% endif %}

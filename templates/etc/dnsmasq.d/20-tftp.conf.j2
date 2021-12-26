@@ -1,0 +1,19 @@
+
+{% if dnsmasq_enable_tftp %}
+
+enable-tftp
+tftp-root={{ dnsmasq_tftpboot_dir }}
+
+# Do not abort if the tftp-root is unavailable
+#tftp-no-fail
+
+# Make the TFTP server more secure: with this set, only files owned by
+# the user dnsmasq is running as will be send over the net.
+#tftp-secure
+
+# This option stops dnsmasq from negotiating a larger blocksize for TFTP
+# transfers. It will slow things down, but may rescue some broken TFTP
+# clients.
+#tftp-no-blocksize
+
+{% endif %}

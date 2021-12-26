@@ -1,0 +1,9 @@
+---
+
+- name: install dnsmasq
+  become: true
+  package:
+    name: "{{ dnsmasq_packages }}"
+    state: present
+
+...

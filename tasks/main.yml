@@ -1,0 +1,11 @@
+---
+
+- include_tasks: prepare.yml
+
+- include_tasks: install.yml
+
+- include_tasks: configure.yml
+
+- include_tasks: service.yml
+
+...

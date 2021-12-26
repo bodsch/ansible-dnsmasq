@@ -1,0 +1,9 @@
+---
+
+dnsmasq_packages:
+  - dnsmasq
+
+dnsmasq_config_file: /etc/dnsmasq.conf
+dnsmasq_config_directory: /etc/dnsmasq.d
+
+...

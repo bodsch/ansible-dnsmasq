@@ -1,0 +1,9 @@
+
+{% if dnsmasq_log_queries %}
+log-queries
+
+log-facility={{ dnsmasq_log_facility }}
+{% endif %}
+
+# Log lots of extra information about DHCP transactions.
+#log-dhcp

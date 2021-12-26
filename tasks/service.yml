@@ -1,0 +1,13 @@
+---
+
+- name: restart dnsmasq if needed
+  meta: flush_handlers
+
+- name: ensure dnsmasq is enabled on boot
+  become: true
+  service:
+    name: dnsmasq
+    enabled: true
+    state: started
+
+...

@@ -1,0 +1,10 @@
+
+{% if dnsmasq_pri_domain_name is defined %}
+domain={{ dnsmasq_pri_domain_name }}
+{% endif %}
+
+{% if dnsmasq_custom_domains is defined and dnsmasq_custom_domains != [] %}
+{%   for item in dnsmasq_custom_domains %}
+domain={{ item.get('domain') }},{{ item.get('network') | join (',') }}
+{%   endfor %}
+{% endif %}

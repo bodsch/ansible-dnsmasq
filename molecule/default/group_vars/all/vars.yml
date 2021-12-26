@@ -1,0 +1,16 @@
+---
+
+dnsmasq_bind_interfaces:
+  - eth0
+
+dnsmasq_conditional_forwarders:
+  - domain:  coremedia.lan
+    address: 192.168.124.5
+
+dnsmasq_custom_domains:
+  - domain: "test.{{ dnsmasq_pri_domain_name }}"
+    network:
+      - 192.168.0.0/24 # Define as subnet
+#     # - 192.168.0.100,192.168.1.100 # Define as range
+
+...
