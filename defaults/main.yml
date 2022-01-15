@@ -1,6 +1,8 @@
 ---
 # defaults file for ansible-dnsmasq
 
+dnsmasq_resolved_disabled: true
+
 # Define specific interfaces to listen on
 dnsmasq_bind_interfaces: []
 # - "{{ ansible_default_ipv4['interface'] }}"
