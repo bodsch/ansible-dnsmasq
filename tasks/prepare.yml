@@ -22,8 +22,12 @@
   package:
     update_cache: true
 
+- name: install dependency
+  package:
+    name: "{{ dnsmasq_requirements }}"
+    state: present
 
-
-
+- name: get latest system information
+  setup:
 
 ...

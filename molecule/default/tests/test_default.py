@@ -72,54 +72,14 @@ def get_vars(host):
     return result
 
 
-def test_data_directory(host, get_vars):
-    """
-      configured datadir
-    """
-    directory = get_vars.get("mariadb_config_mysqld", {}).get("datadir", "/var/lib/mysql")
-    user = "mysql"
-
-    dir = host.file(directory)
-    assert dir.is_directory
-    assert dir.user == user
-    assert dir.group == user
-
-
-def test_tmp_directory(host, get_vars):
-    """
-      configured tmpdir
-    """
-    directory = get_vars.get("mariadb_config_mysqld", {}).get("tmpdir", "/tmp")
-
-    dir = host.file(directory)
-    assert dir.is_directory
-
-
-def test_log_directory(host, get_vars):
-    """
-      configured logdir
-    """
-    error_log_file = get_vars.get("mariadb_config_mysqld", {}).get("log_error", "/var/log/mysql/error.log")
-    user = "mysql"
-
-    dir = host.file(os.path.dirname(error_log_file))
-    assert dir.is_directory
-    assert dir.user == user
-
-
 def test_directories(host, get_vars):
     """
       used config directory
-
-      debian based: /etc/mysql
-      redhat based: /etc/my.cnf.d
-      arch based  : /etc/my.cnf.d
     """
     pp_json(get_vars)
 
     directories = [
-        get_vars.get("mariadb_config_dir"),
-        get_vars.get("mariadb_config_include_dir")
+        get_vars.get("dnsmasq_config_directory"),
     ]
 
     for dirs in directories:
@@ -132,8 +92,7 @@ def test_files(host, get_vars):
       created config files
     """
     files = [
-        get_vars.get("mariadb_config_file"),
-        "{}/mysql.cnf".format(get_vars.get("mariadb_config_include_dir"))
+        get_vars.get("dnsmasq_config_file")
     ]
 
     for _file in files:
@@ -141,34 +100,34 @@ def test_files(host, get_vars):
         assert f.is_file
 
 
-def test_user(host, get_vars):
-    """
-      created user
-    """
-    shell = '/bin/false'
-
-    distribution = host.system_info.distribution
-
-    if distribution in ['centos', 'redhat', 'ol']:
-        shell = "/sbin/nologin"
-    elif distribution == "arch":
-        shell = "/usr/bin/nologin"
-
-    user_name = "mysql"
-    u = host.user(user_name)
-    g = host.group(user_name)
-
-    assert g.exists
-    assert u.exists
-    assert user_name in u.groups
-    assert u.shell == shell
+# def test_user(host, get_vars):
+#     """
+#       created user
+#     """
+#     shell = '/bin/false'
+#
+#     distribution = host.system_info.distribution
+#
+#     if distribution in ['centos', 'redhat', 'ol']:
+#         shell = "/sbin/nologin"
+#     elif distribution == "arch":
+#         shell = "/usr/bin/nologin"
+#
+#     user_name = "mysql"
+#     u = host.user(user_name)
+#     g = host.group(user_name)
+#
+#     assert g.exists
+#     assert u.exists
+#     assert user_name in u.groups
+#     assert u.shell == shell
 
 
 def test_service_running_and_enabled(host, get_vars):
     """
       running service
     """
-    service_name = get_vars.get("mariadb_service")
+    service_name = "dnsmasq"
 
     service = host.service(service_name)
     assert service.is_running
@@ -183,21 +142,12 @@ def test_listening_socket(host, get_vars):
     for i in listening:
         print(i)
 
-    distribution = host.system_info.distribution
-    release = host.system_info.release
-
-    bind_address = get_vars.get("mariadb_config_mysqld").get("bind-address", "127.0.0.1")
-    bind_port = get_vars.get("mariadb_config_mysqld").get("port", 25)
-    socket_name = get_vars.get("mariadb_socket")
-
-    f = host.file(socket_name)
-    assert f.exists
+    bind_address = "0.0.0.0"
+    bind_port = 53
 
     listen = []
     listen.append("tcp://{}:{}".format(bind_address, bind_port))
-
-    if not (distribution == 'ubuntu' and release == '18.04'):
-        listen.append("unix://{}".format(socket_name))
+    listen.append("udp://{}:{}".format(bind_address, bind_port))
 
     for spec in listen:
         socket = host.socket(spec)

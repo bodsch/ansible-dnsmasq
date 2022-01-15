@@ -1,5 +1,8 @@
 ---
 
+dnsmasq_requirements:
+  - iproute2
+
 dnsmasq_packages:
   - dnsmasq
 
