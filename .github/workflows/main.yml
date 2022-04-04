@@ -96,7 +96,7 @@ jobs:
         python-version:
           - '3.9'
         ansible-version:
-          - '3.4.0'
+          - '4.1.0'
           - '5.1.0'
 
     steps:
@@ -132,6 +132,7 @@ jobs:
     runs-on: ubuntu-18.04
     steps:
       - name: galaxy
-        uses: robertdebock/galaxy-action@1.1.0
+        uses: robertdebock/galaxy-action@1.2.0
         with:
           galaxy_api_key: ${{ secrets.galaxy_api_key }}
+          git_branch: main
