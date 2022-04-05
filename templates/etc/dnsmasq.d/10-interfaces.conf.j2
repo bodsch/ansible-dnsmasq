@@ -8,11 +8,9 @@
 interface={{ item }}
 {%   endfor %}
 {% endif %}
-
 {% if dnsmasq_bind_listen_only_interfaces %}
 bind-interfaces
 {% endif %}
-
 {% if dnsmasq_do_not_listen_on_interfaces is defined and dnsmasq_do_not_listen_on_interfaces != [] %}
 {%   for item in dnsmasq_do_not_listen_on_interfaces %}
 except-interface={{ item }}

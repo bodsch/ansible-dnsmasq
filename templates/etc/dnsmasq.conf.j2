@@ -1,3 +1,4 @@
+#jinja2: trim_blocks: True, lstrip_blocks: True
 # {{ ansible_managed }}
 
 port={{ dnsmasq_listen_port }}
@@ -25,39 +26,30 @@ port={{ dnsmasq_listen_port }}
 # with  each  server  strictly  in  the  order  they   appear   in
 # /etc/resolv.conf
 #strict-order
-
 {% if not dnsmasq_read_etc_hosts %}
 no-hosts
 {% endif %}
-
 {% if not dnsmasq_read_etc_resolv_conf %}
 no-resolv
 {% endif %}
-
 {% if not dnsmasq_poll_etc_resolv_conf %}
 no-poll
 {% endif %}
-
 {% if dnsmasq_forward_plain_names is defined and dnsmasq_forward_plain_names %}
 domain-needed
 {% endif %}
-
 {% if dnsmasq_forward_nonrouted_addresses %}
 bogus-priv
 {% endif %}
-
 {% if dnsmasq_cache_size is defined %}
 cache-size={{ dnsmasq_cache_size }}
 {% endif %}
-
 {% if dnsmasq_all_servers %}
 all-servers
 {% endif %}
-
 {% if dnsmasq_no_negcache %}
 no-negcache
 {% endif %}
-
 # Include another lot of configuration options.
 #conf-file=/etc/dnsmasq.more.conf
 conf-dir={{ dnsmasq_config_directory }}/,*.conf

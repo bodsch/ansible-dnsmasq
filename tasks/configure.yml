@@ -1,5 +1,13 @@
 ---
 
+- name: create configuration directory
+  file:
+    state: directory
+    path: /etc/dnsmasq.d
+    owner: root
+    group: root
+    mode: 0750
+
 - name: create configuration files
   template:
     src: etc/dnsmasq.d/{{ item }}.j2

@@ -9,4 +9,10 @@ dnsmasq_packages:
 dnsmasq_config_file: /etc/dnsmasq.conf
 dnsmasq_config_directory: /etc/dnsmasq.d
 
+dnsmasq_defaults_interfaces:
+  listen: ""
+  not_listen: []
+  interfaces: []
+  bind_only: false
+
 ...
