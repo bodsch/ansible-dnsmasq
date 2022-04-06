@@ -53,7 +53,7 @@ jobs:
       - name: check out the codebase.
         uses: actions/checkout@v2
         with:
-          path: 'ansible-postfix'
+          path: 'ansible-dnsmasq'
 
       - name: set up python ${{ matrix.python-version }}
         uses: actions/setup-python@v2

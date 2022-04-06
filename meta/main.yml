@@ -10,16 +10,16 @@ galaxy_info:
   min_ansible_version: 2.10
   platforms:
     - name: ArchLinux
-    - name: Ubuntu
-      versions:
-        # 20.04
-        - focal
     - name: Debian
       versions:
         # 10
         - buster
         # 11
         - bullseye
+    - name: Ubuntu
+      versions:
+        # 20.04
+        - focal
 
   galaxy_tags:
     - system
