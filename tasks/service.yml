@@ -5,6 +5,7 @@
     name: systemd-resolved
     state: stopped
     enabled: false
+  ignore_errors: true
   when:
     - dnsmasq_resolved_disabled | bool
   tags:
