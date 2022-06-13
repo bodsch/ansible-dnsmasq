@@ -1,13 +1,20 @@
 ---
 
+- name: lockup for existing systemd-resolved
+  shell: |
+    systemctl show --property FragmentPath systemd-resolved | cut -d '=' -f2
+  register: _systemd_resolved
+
 - name: stop and disable (systemd-resolved) service
   service:
     name: systemd-resolved
     state: stopped
     enabled: false
-  ignore_errors: true
   when:
+    - not ansible_check_mode
     - dnsmasq_resolved_disabled | bool
+    - ansible_service_mgr | lower == "systemd"
+    - not _systemd_resolved.stdout_lines | count == 0
   tags:
     - configuration
     - dnsmasq

@@ -6,6 +6,11 @@ Ansible role to install and configure dnsmasq on various linux systems.
 [sourcecode](https://thekelleys.org.uk/gitweb/?p=dnsmasq.git;a=summary)
 
 
+## usage
+
+```yaml
+
+```
 
 
 ## Contribution
