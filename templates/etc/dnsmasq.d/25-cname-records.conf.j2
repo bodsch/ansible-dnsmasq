@@ -3,3 +3,10 @@
 # for targets which are names from DHCP or /etc/hosts. Give host
 # "bert" another name, bertrand
 #cname=bertand,bert
+
+{% if dnsmasq_cnames is defined and dnsmasq_cnames != [] %}
+{% for item in dnsmasq_cnames %}
+{% set cnames = item.cnames | join(',') %}
+cname={{ cnames }},{{ item.target }}{{ ',' if item.ttl is defined else '' }}{{ item.ttl | default('') }}
+{% endfor %}
+{% endif %}

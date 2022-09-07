@@ -7,10 +7,25 @@ dnsmasq_conditional_forwarders:
   - domain:  coremedia.lan
     address: 192.168.124.5
 
+dnsmasq_static_addresses:
+  - address: 192.168.124.3
+    name: www.coremedia.lan
+
 dnsmasq_custom_domains:
   - domain: "test.{{ dnsmasq_pri_domain_name }}"
     network:
       - 192.168.0.0/24 # Define as subnet
 #     # - 192.168.0.100,192.168.1.100 # Define as range
 
+dnsmasq_cnames:
+  - target: www.coremedia.lan
+    cnames:
+      - rls.coremedia.lan
+      - solr.coremedia.lan
+      - fe.coremedia.lan
+  - target: db.coremedia.lan
+    ttl: 320
+    cnames:
+      - mongodb.coremedia.lan
+      - redis.coremedia.lan
 ...
