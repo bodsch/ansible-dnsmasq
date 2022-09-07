@@ -17,6 +17,11 @@ dnsmasq_conditional_forwarders: []
 # - address:                       172.16.24.1
 #   domain:                        etsbv.internal
 
+dnsmasq_cnames: []
+#  - target:
+#    cnames:
+#      - cname
+
 # Defines if DNSMASQ should be configured
 dnsmasq_config: false
 
