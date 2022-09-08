@@ -65,7 +65,9 @@ dnsmasq_dnssec: {}
 #  conf_file: ""
 #  dnssec_check_unsigned: false
 
-dnsmasq_domain: example.org
+dnsmasq_domain:
+  name: example.org
+  custom: []
 
 dnsmasq_ipset: {}
 
@@ -180,6 +182,18 @@ dnsmasq_dnssec: {}
 #  enabled: false
 #  conf_file: ""
 #  dnssec_check_unsigned: false
+```
+
+### `dnsmasq_domain`
+
+```yaml
+dnsmasq_domain:
+  name: example.org
+  # Define custom domains per subnet, ip range, etc.
+  custom:
+    - domain: "example.local"
+      network:
+        - 192.168.10.0/24 # Define as range
 ```
 
 ### `dnsmasq_ipset`

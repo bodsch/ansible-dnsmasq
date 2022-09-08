@@ -39,6 +39,7 @@
     dnsmasq_alias: "{{ dnsmasq_defaults_alias | combine( dnsmasq_alias, recursive=True) }}"
     dnsmasq_dhcp: "{{ dnsmasq_defaults_dhcp | combine( dnsmasq_dhcp, recursive=True) }}"
     dnsmasq_dnssec: "{{ dnsmasq_defaults_dnssec | combine( dnsmasq_dnssec, recursive=True) }}"
+    dnsmasq_domain: "{{ dnsmasq_defaults_domain | combine( dnsmasq_domain, recursive=True) }}"
     dnsmasq_ipset: "{{ dnsmasq_defaults_ipset | combine( dnsmasq_ipset, recursive=True) }}"
     dnsmasq_local: "{{ dnsmasq_defaults_local | combine( dnsmasq_local, recursive=True) }}"
     dnsmasq_mx: "{{ dnsmasq_defaults_mx | combine( dnsmasq_mx, recursive=True) }}"

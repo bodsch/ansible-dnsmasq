@@ -101,6 +101,10 @@ dnsmasq_defaults_dnssec:
   conf_file: ""
   dnssec_check_unsigned: false
 
+dnsmasq_defaults_domain:
+  name: example.org
+  custom: []
+
 # dnsmasq_defaults_domain: ""
 dnsmasq_defaults_ipset: {}
 

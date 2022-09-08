@@ -21,7 +21,9 @@ dnsmasq_dhcp: {}
 
 dnsmasq_dnssec: {}
 
-dnsmasq_domain: example.org
+dnsmasq_domain:
+  name: example.org
+  custom: []
 
 dnsmasq_ipset: {}
 
