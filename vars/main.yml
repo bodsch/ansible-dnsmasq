@@ -112,7 +112,7 @@ dnsmasq_defaults_nftset: {}
 
 dnsmasq_defaults_pxe: {}
 
-dnsmasq_defaults_server: {}
+dnsmasq_defaults_server:
   nameservers: []
   forwarders: []
 # dnsmasq_enable_forwarders: true
