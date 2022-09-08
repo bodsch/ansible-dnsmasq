@@ -34,6 +34,9 @@ provisioner:
       stdout_callback: yaml
       callbacks_enabled: profile_tasks
       # remote_tmp: /tmp/ansible-${USER}
+      fact_caching: "jsonfile"
+      fact_caching_timeout: 8640
+      fact_caching_connection: ".facts"
 
 scenario:
   test_sequence:

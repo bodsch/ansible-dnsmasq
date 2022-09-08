@@ -1,4 +1,42 @@
+#jinja2: trim_blocks: True, lstrip_blocks: True
+# {{ ansible_managed }}
 
+{% if dnsmasq_dhcp.enabled %}
+dhcp-client-update
+  {% if dnsmasq_dhcp.dhcp_boot is defined and
+        dnsmasq_dhcp.dhcp_boot | string | length > 0 %}
+dhcp-boot={{ dnsmasq_dhcp.dhcp_boot  }}
+  {% endif %}
+  {% if dnsmasq_dhcp.dhcp_hosts is defined and
+        dnsmasq_dhcp.dhcp_hosts | count > 0 %}
+    {% for item in dnsmasq_dhcp.dhcp_hosts %}
+dhcp-host={{ item.mac_address | join(',') }}{% if item.name is defined %},{{ item.name }}.{{ dnsmasq_domain }}{% endif %}{% if item.address is defined %},{{ item.address }}{% endif %}{% if item.lease_time is defined %},{{ item.lease_time }}{% endif %}
+    {% endfor %}
+  {% endif %}
+  {% if dnsmasq_dhcp.dhcp_options is defined and
+        dnsmasq_dhcp.dhcp_options | count > 0 %}
+    {% for item in dnsmasq_dhcp.dhcp_options %}
+dhcp-option=option:{{ item.option }},{{ item.value | join(',') }}
+    {% endfor %}
+  {% endif %}
+  {% if dnsmasq_dhcp.dhcp_options_tagged is defined and
+        dnsmasq_dhcp.dhcp_options_tagged | count > 0 %}
+    {% for item in dnsmasq_dhcp.dhcp_options_tagged %}
+dhcp-option=tag:{{ item.tag }},option:{{ item.option }},{{ item.value | join(',') }}
+    {% endfor %}
+  {% endif %}
+  {% if dnsmasq_dhcp.dhcp_range is defined and
+        dnsmasq_dhcp.dhcp_range | count > 0 %}
+    {% for item in dnsmasq_dhcp.dhcp_range %}
+dhcp-range={% if item.set is defined %}set:{{ item.set }},{% endif %}{{ item.start }},{{ item.end }},{{ item.netmask }}{% if item.lease_time is defined %},{{ item.lease_time }}{% endif %}
+    {% endfor %}
+  {% endif %}
+{% endif %}
+{% if dnsmasq_dhcp.dhcp_authoritative %}
+dhcp-authoritative
+{% endif %}
+
+{#
 # Uncomment this to enable the integrated DHCP server, you need
 # to supply the range of addresses available for lease and optionally
 # a lease time. If you have more than one network, you will need to
@@ -370,36 +408,4 @@
 # configure it as shown above, and then use the following line to
 # disable DHCP and TFTP on it.
 #no-dhcp-interface=
-
-{% if dnsmasq_enable_dhcp %}
-dhcp-client-update
-dhcp-boot={{ dnsmasq_dhcp_boot }}
-{%   if dnsmasq_dhcp_host_reservations is defined and dnsmasq_dhcp_host_reservations != [] %}
-{%     for item in dnsmasq_dhcp_host_reservations %}
-dhcp-host={{ item['mac_address']|join(',') }}{% if item['name'] is defined %},{{ item['name'] }}.{{ dnsmasq_pri_domain_name }}{% endif %}{% if item['address'] is defined %},{{ item['address'] }}{% endif %}{% if item['lease_time'] is defined %},{{ item['lease_time'] }}{% endif %}
-
-{%     endfor %}
-{%   endif %}
-{%   if dnsmasq_dhcp_options is defined and dnsmasq_dhcp_options != [] %}
-{%     for item in dnsmasq_dhcp_options %}
-dhcp-option=option:{{ item['option'] }},{{ item['value']|join(',') }}
-{%     endfor %}
-{%   endif %}
-{%   if dnsmasq_tagged_dhcp_options is defined and dnsmasq_tagged_dhcp_options != [] %}
-{%     for item in dnsmasq_tagged_dhcp_options %}
-dhcp-option=tag:{{ item['tag'] }},option:{{ item['option'] }},{{ item['value']|join(',') }}
-{%     endfor %}
-{%   endif %}
-{%   if dnsmasq_dhcp_scopes is defined and dnsmasq_dhcp_scopes != [] %}
-{%     for item in dnsmasq_dhcp_scopes %}
-dhcp-range={% if item['set'] is defined %}set:{{ item['set'] }},{% endif %}{{ item['start'] }},{{ item['end'] }},{{ item['netmask'] }}{% if item['lease_time'] is defined %},{{ item['lease_time'] }}{% endif %}
-
-{%     endfor %}
-{%   endif %}
-{% endif %}
-{% if dnsmasq_dhcp_authoritative is defined and dnsmasq_dhcp_authoritative %}
-dhcp-authoritative
-{% endif %}
-
-
-
+#}
