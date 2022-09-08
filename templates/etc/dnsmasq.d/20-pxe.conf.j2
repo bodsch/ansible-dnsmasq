@@ -1,6 +1,7 @@
 #jinja2: trim_blocks: True, lstrip_blocks: True
 # {{ ansible_managed }}
 
+{#
 # Do real PXE, rather than just booting a single file, this is an
 # alternative to dhcp-boot.
 #pxe-prompt="What system shall I netboot?"
@@ -22,3 +23,4 @@
 
 # Use bootserver at a known IP address.
 #pxe-service=x86PC, "Install windows from RIS server", 1, 1.2.3.4
+#}

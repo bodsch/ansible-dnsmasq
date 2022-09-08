@@ -28,7 +28,7 @@ dnsmasq_defaults_global:
   conf_dir: ""
 
 dnsmasq_defaults_interfaces:
-  listen_address: ""
+  listen_address: "127.0.0.1"
   interfaces: []
   except_interfaces: []
   bind_only: false

@@ -1,6 +1,7 @@
 #jinja2: trim_blocks: True, lstrip_blocks: True
 # {{ ansible_managed }}
 
+{#
 # Uncomment these to enable DNSSEC validation and caching:
 # (Requires dnsmasq to be built with DNSSEC option.)
 #conf-file=%%PREFIX%%/share/dnsmasq/trust-anchors.conf
@@ -13,3 +14,4 @@
 # The cost of setting this is that even queries in unsigned domains will need
 # one or more extra DNS queries to verify.
 #dnssec-check-unsigned
+#}

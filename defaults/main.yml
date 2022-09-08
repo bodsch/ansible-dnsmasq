@@ -19,7 +19,7 @@ dnsmasq_global: {}
 #   conf_dir: ""
 
 dnsmasq_interfaces:
-  listen_address: ""
+  listen_address: "127.0.0.1"
   # Define specific interfaces to listen on
   interfaces: []
   #  - "{{ ansible_default_ipv4['interface'] }}"

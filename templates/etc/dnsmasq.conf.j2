@@ -5,16 +5,16 @@ port={{ dnsmasq_global.port }}
 
 # If you want dnsmasq to change uid and gid to something other
 # than the default, edit the following lines.
-{% if dns_global.user is defined and
-      dns_global.user | string | length > 0 %}
-user={{ dns_global.user }}
+{% if dnsmasq_global.user is defined and
+      dnsmasq_global.user | string | length > 0 %}
+user={{ dnsmasq_global.user }}
 {% endif %}
-{% if dns_global.group is defined and
-      dns_global.group | string | length > 0 %}
-group={{ dns_global.group }}
+{% if dnsmasq_global.group is defined and
+      dnsmasq_global.group | string | length > 0 %}
+group={{ dnsmasq_global.group }}
 {% endif %}
-{% if dns_global.filterwin2k is defined and
-      dns_global.filterwin2k %}
+{% if dnsmasq_global.filterwin2k is defined and
+      dnsmasq_global.filterwin2k %}
 # Uncomment this to filter useless windows-originated DNS requests
 # which can trigger dial-on-demand links needlessly.
 # Note that (amongst other things) this blocks all SRV requests,
@@ -23,14 +23,14 @@ group={{ dns_global.group }}
 # dnsmasq (via srv-host= lines) are not suppressed by it.
 filterwin2k
 {% endif %}
-{% if dns_global.resolv_file is defined and
-      dns_global.resolv_file | string | length > 0 %}
+{% if dnsmasq_global.resolv_file is defined and
+      dnsmasq_global.resolv_file | string | length > 0 %}
 # Change this line if you want dns to get its upstream servers from
 # somewhere other that /etc/resolv.conf
-resolv-file={{ dns_global.resolv_file }}
+resolv-file={{ dnsmasq_global.resolv_file }}
 {% endif %}
-{% if dns_global.strict_order is defined and
-      dns_global.strict_order %}
+{% if dnsmasq_global.strict_order is defined and
+      dnsmasq_global.strict_order %}
 # By  default,  dnsmasq  will  send queries to any of the upstream
 # servers it knows about and tries to favour servers to are  known
 # to  be  up.  Uncommenting this forces dnsmasq to try each query
@@ -38,29 +38,29 @@ resolv-file={{ dns_global.resolv_file }}
 # /etc/resolv.conf
 strict-order
 {% endif %}
-{% if not dns_global.no_hosts %}
+{% if not dnsmasq_global.no_hosts %}
 no-hosts
 {% endif %}
-{% if not dns_global.no_resolv %}
+{% if not dnsmasq_global.no_resolv %}
 no-resolv
 {% endif %}
-{% if not dns_global.no_poll %}
+{% if not dnsmasq_global.no_poll %}
 no-poll
 {% endif %}
-{% if dns_global.domain_needed %}
+{% if dnsmasq_global.domain_needed %}
 domain-needed
 {% endif %}
-{% if dns_global.bogus_priv %}
+{% if dnsmasq_global.bogus_priv %}
 bogus-priv
 {% endif %}
-{% if dns_global.cache_size is defined and
-      dns_global.cache_size | string | length > 0 %}
-cache-size={{ dns_global.cache_size }}
+{% if dnsmasq_global.cache_size is defined and
+      dnsmasq_global.cache_size | string | length > 0 %}
+cache-size={{ dnsmasq_global.cache_size }}
 {% endif %}
-{% if dns_global.all_servers %}
+{% if dnsmasq_global.all_servers %}
 all-servers
 {% endif %}
-{% if ddns_global.no_negcache %}
+{% if dnsmasq_global.no_negcache %}
 no-negcache
 {% endif %}
 # Include another lot of configuration options.
