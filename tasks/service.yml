@@ -3,6 +3,7 @@
 - name: lockup for existing systemd-resolved
   shell: |
     systemctl show --property FragmentPath systemd-resolved | cut -d '=' -f2
+  changed_when: false
   register: _systemd_resolved
   when:
     - ansible_service_mgr | lower == "systemd"
