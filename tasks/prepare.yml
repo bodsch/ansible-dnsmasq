@@ -35,7 +35,7 @@
     dnsmasq_global: "{{ dnsmasq_defaults_global | combine( dnsmasq_global, recursive=True) }}"
     dnsmasq_interfaces: "{{ dnsmasq_defaults_interfaces | combine( dnsmasq_interfaces, recursive=True) }}"
     dnsmasq_logging: "{{ dnsmasq_defaults_logging | combine( dnsmasq_logging, recursive=True) }}"
-    dnsmasq_address: "{{ dnsmasq_defaults_address | union( dnsmasq_address ) }}"
+    dnsmasq_addresses: "{{ dnsmasq_defaults_addresses | union( dnsmasq_addresses ) }}"
     dnsmasq_alias: "{{ dnsmasq_defaults_alias | combine( dnsmasq_alias, recursive=True) }}"
     dnsmasq_dhcp: "{{ dnsmasq_defaults_dhcp | combine( dnsmasq_dhcp, recursive=True) }}"
     dnsmasq_dnssec: "{{ dnsmasq_defaults_dnssec | combine( dnsmasq_dnssec, recursive=True) }}"

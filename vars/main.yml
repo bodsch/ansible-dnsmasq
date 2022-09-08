@@ -38,7 +38,7 @@ dnsmasq_defaults_logging:
   log_facility: /var/log/dnsmasq.log
   log_dhcp: false
 
-dnsmasq_defaults_address: []
+dnsmasq_defaults_addresses: []
 # - address: 192.168.202.133
 #   name: node1.test.com
 
