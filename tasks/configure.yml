@@ -35,6 +35,9 @@
     - 25-ptr-records.conf
     - 25-srv-records.conf
     - 25-txt-records.conf
+  notify:
+    - validate configuration
+    - restart dnsmasq
 
 - name: create dnsmasq.conf
   template:
