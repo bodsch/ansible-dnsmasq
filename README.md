@@ -136,7 +136,7 @@ dnsmasq_global:
 ### `dnsmasq_interfaces`
 
 ```yaml
-   dnsmasq_interfaces:
+dnsmasq_interfaces:
   listen_address: "127.0.0.1"
   # Define specific interfaces to listen on
   interfaces: []
