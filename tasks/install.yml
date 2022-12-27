@@ -2,7 +2,7 @@
 
 - name: install dnsmasq
   become: true
-  package:
+  ansible.builtin.package:
     name: "{{ dnsmasq_packages }}"
     state: present
 

@@ -1,7 +1,7 @@
 ---
 
 - name: create configuration directory
-  file:
+  ansible.builtin.file:
     state: directory
     path: /etc/dnsmasq.d
     owner: root
@@ -9,7 +9,7 @@
     mode: 0750
 
 - name: create configuration files
-  template:
+  ansible.builtin.template:
     src: etc/dnsmasq.d/{{ item }}.j2
     dest: "{{ dnsmasq_config_directory }}/{{ item }}"
     owner: root
@@ -40,7 +40,7 @@
     - restart dnsmasq
 
 - name: create dnsmasq.conf
-  template:
+  ansible.builtin.template:
     src: etc/dnsmasq.conf.j2
     dest: /etc/dnsmasq.conf
     owner: root

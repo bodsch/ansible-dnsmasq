@@ -1,18 +1,18 @@
 ---
 
 - name: validate configuration
-  command: |
+  ansible.builtin.command: |
     dnsmasq --test
 
 - name: restart service
-  service:
+  ansible.builtin.service:
     name: dnsmasq
     state: restarted
   listen: restart dnsmasq
   when: service_default_state | default('started') == 'started'
 
 - name: reload service
-  service:
+  ansible.builtin.service:
     name: dnsmasq
     state: reloaded
   listen: reload dnsmasq
