@@ -3,6 +3,8 @@
 - name: lockup for existing systemd-resolved
   ansible.builtin.shell: |
     set -o pipefail && systemctl show --property FragmentPath systemd-resolved | cut -d '=' -f2
+  args:
+    executable: /bin/bash
   changed_when: false
   register: _systemd_resolved
   when:
