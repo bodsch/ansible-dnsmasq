@@ -7,9 +7,9 @@
 server={{ item }}
   {% endfor %}
 {% endif %}
-
 {% if dnsmasq_server.forwarders is defined and
       dnsmasq_server.forwarders | count > 0 %}
+
   {% for item in dnsmasq_server.forwarders %}
 server=/{{ item.domain }}/{{ item.address }}
   {% endfor %}

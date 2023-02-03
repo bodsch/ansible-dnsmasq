@@ -56,7 +56,7 @@ dnsmasq_logging:
   log_facility: /var/log/dnsmasq.log
   log_dhcp: false
 
-dnsmasq_address: []
+dnsmasq_addresses: []
 # - address: 192.168.202.133
 #   name: node1.test.com
 
@@ -278,7 +278,7 @@ Please read [Contribution](CONTRIBUTING.md)
 
 The `master` Branch is my *Working Horse* includes the "latest, hot shit" and can be complete broken!
 
-If you want to use something stable, please use a [Tagged Version](https://gitlab.com/bodsch/ansible-dnsmasq/-/tags)!
+If you want to use something stable, please use a [Tagged Version](https://github.com/bodsch/ansible-dnsmasq/tags)!
 
 
 ## Author

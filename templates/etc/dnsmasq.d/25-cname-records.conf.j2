@@ -8,7 +8,6 @@
 cname={{ cnames }},{{ item.target }}{{ ',' if item.ttl is defined else '' }}{{ item.ttl | default('') }}
   {% endfor %}
 {% endif %}
-
 {#
 # Provide an alias for a "local" DNS name. Note that this _only_ works
 # for targets which are names from DHCP or /etc/hosts. Give host
