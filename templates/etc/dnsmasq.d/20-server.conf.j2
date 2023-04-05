@@ -1,17 +1,17 @@
 #jinja2: trim_blocks: True, lstrip_blocks: True
 # {{ ansible_managed }}
 
+{% if dnsmasq_server.forwarders is defined and
+      dnsmasq_server.forwarders | count > 0 %}
+  {% for item in dnsmasq_server.forwarders %}
+server=/{{ item.domain }}/{{ item.address }}
+  {% endfor %}
+{% endif %}
+
 {% if dnsmasq_server.nameservers is defined and
       dnsmasq_server.nameservers | count > 0 %}
   {% for item in dnsmasq_server.nameservers %}
 server={{ item }}
-  {% endfor %}
-{% endif %}
-{% if dnsmasq_server.forwarders is defined and
-      dnsmasq_server.forwarders | count > 0 %}
-
-  {% for item in dnsmasq_server.forwarders %}
-server=/{{ item.domain }}/{{ item.address }}
   {% endfor %}
 {% endif %}
 
