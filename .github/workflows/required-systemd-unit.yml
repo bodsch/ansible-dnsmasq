@@ -1,6 +1,6 @@
 ---
 
-name: dnsmasq with configuration
+name: dnsmasq with required systemd unit
 
 on:
   workflow_run:
@@ -27,7 +27,7 @@ jobs:
         ansible-version:
           - '6.7'
         scenario:
-          - configured
+          - require-systemd-unit
     steps:
       - name: check out the codebase.
         uses: actions/checkout@v3

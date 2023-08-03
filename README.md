@@ -20,6 +20,12 @@ Ansible role to install and configure dnsmasq on various linux systems.
 ## usage
 
 ```yaml
+dnsmasq_systemd:
+  unit:
+    after: []
+    wants: []
+    requires: []
+
 dnsmasq_global: {}
 #   port: 53
 #   user: ""
@@ -110,27 +116,42 @@ dnsmasq_records:
   srv: []
   txt: []
 ```
+### `dnsmasq_systemd`
+
+Adds a possibility to make the service dependent on others.
+
+For example, if binding to a VPN network interface is desired and the VPN must be started beforehand.
+
+```yaml
+dnsmasq_systemd:
+  unit:
+    after:
+      - ssh.service
+    wants: []
+    requires: []
+```
+
 
 ### `dnsmasq_global`
 
 ```yaml
 dnsmasq_global:
-   port: 53
-   user: ""
-   group: ""
-   filterwin2k: false
-   resolv_file: ""
-   strict_order: false
-   no_hosts: false
-   no_resolv: false
-   no_poll: false
-   domain_needed: false
-   bogus_priv: false
-   cache_size: 150
-   all_servers: false
-   no_negcache: false
-   conf_file: ""
-   conf_dir: ""
+  port: 53
+  user: ""
+  group: ""
+  filterwin2k: false
+  resolv_file: ""
+  strict_order: false
+  no_hosts: false
+  no_resolv: false
+  no_poll: false
+  domain_needed: false
+  bogus_priv: false
+  cache_size: 150
+  all_servers: false
+  no_negcache: false
+  conf_file: ""
+  conf_dir: ""
 ```
 
 ### `dnsmasq_interfaces`

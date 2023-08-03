@@ -1,5 +1,11 @@
 ---
 
+dnsmasq_systemd:
+  unit:
+    after: []
+    wants: []
+    requires: []
+
 dnsmasq_global: {}
 
 dnsmasq_interfaces:
