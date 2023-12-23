@@ -5,6 +5,12 @@ Ansible role to install and configure dnsmasq on various linux systems.
 
 [sourcecode](https://thekelleys.org.uk/gitweb/?p=dnsmasq.git;a=summary)
 
+---
+
+> Further development of this Ansible role has been moved to Collection [bodsch.dns](https://github.com/bodsch/ansible-collection-dns).
+> **This repository will therefore no longer be actively maintained.**
+
+---
 
 [![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/bodsch/ansible-dnsmasq/main.yml?branch=main)][ci]
 [![GitHub issues](https://img.shields.io/github/issues/bodsch/ansible-dnsmasq)][issues]
